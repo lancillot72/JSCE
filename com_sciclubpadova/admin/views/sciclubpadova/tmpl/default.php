@@ -19,7 +19,7 @@ defined('_JEXEC') or die('Restricted Access');
 				<?php echo JHtml::_('grid.checkall'); ?>
 			</th>
 			<th width="90%">
-				<?php echo JText::_('COM_SCICLUBPADOVA_HELLOWORLDS_NAME') ;?>
+				<?php echo JText::_('COM_SCICLUBPADOVA_SCICLUBPADOVA_NAME') ;?>
 			</th>
 			<th width="5%">
 				<?php echo JText::_('COM_SCICLUBPADOVA_PUBLISHED'); ?>

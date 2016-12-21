@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.2.0" method="upgrade">
  
-	<name>Sci Club Padova!</name>
+	<name>COM_SCICLUBPADOVA</name>
 	<!-- The following elements are optional and free of formatting constraints -->
 	<creationDate>November 2016</creationDate>
 	<author>Andrea Zennaro</author>
@@ -10,9 +10,9 @@
 	<copyright>Copyright Info</copyright>
 	<license>License Info</license>
 	<!--  The version string is recorded in the components table -->
-	<version>0.0.7</version>
+	<version>0.0.8</version>
 	<!-- The description is optional and defaults to the name -->
-	<description>Description of the Sci Club Padova component ...</description>
+	<description>COM_SCICLUBPADOVA_DESCRIPTION</description>
  
  	<install> <!-- Runs on install -->
 		<sql>
@@ -42,9 +42,13 @@
 		<folder>models</folder>
 	</files>
  
-	<administration>
+        <languages folder="site/language">
+		<language tag="en-GB">en-GB/en-GB.com_sciclubpadova.ini</language>
+        </languages>
+
+		<administration>
 		<!-- Administration Menu Section -->
-		<menu link='index.php?option=com_sciclubpadova'>Sci Club Padova</menu>
+		<menu link='index.php?option=com_sciclubpadova'>COM_SCICLUBPADOVA_MENU</menu>
 		<!-- Administration Main File Copy Section -->
 		<!-- Note the folder attribute: This attribute describes the folder
 			to copy FROM in the package to install therefore files copied
@@ -63,6 +67,10 @@
 			<!-- views files section -->
 			<folder>views</folder>
 		</files>
-	</administration>
+		<languages folder="admin/language">
+        		<language tag="en-GB">en-GB/en-GB.com_sciclubpadova.ini</language>
+                        <language tag="en-GB">en-GB/en-GB.com_sciclubpadova.sys.ini</language>
+		</languages>
+		</administration>
  
 </extension>
