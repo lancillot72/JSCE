@@ -1,1 +1,0 @@
-Sci Club Padova Administration
