@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS `#__sciclubpadova`;
- 
+
 CREATE TABLE `#__sciclubpadova` (
 	`id`       INT(11)     NOT NULL AUTO_INCREMENT,
 	`greeting` VARCHAR(25) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE `#__sciclubpadova` (
 	ENGINE =MyISAM
 	AUTO_INCREMENT =0
 	DEFAULT CHARSET =utf8;
- 
+
 INSERT INTO `#__sciclubpadova` (`greeting`) VALUES
-('Hello World!'),
-('Good bye World!');
+('Hello World SciClubPadova!'),
+('Good bye World SciClubPadova!');

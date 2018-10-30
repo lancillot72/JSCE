@@ -6,11 +6,11 @@
  * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
- 
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
 ?>
-<form action="index.php?option=com_sciclubpadova&view=sciclubpadova" method="post" id="adminForm" name="adminForm">
+<form action="index.php?option=com_sciclubpadova&view=sciclubpadovas" method="post" id="adminForm" name="adminForm">
 	<table class="table table-striped table-hover">
 		<thead>
 		<tr>
@@ -19,7 +19,7 @@ defined('_JEXEC') or die('Restricted Access');
 				<?php echo JHtml::_('grid.checkall'); ?>
 			</th>
 			<th width="90%">
-				<?php echo JText::_('COM_SCICLUBPADOVA_SCICLUBPADOVA_NAME') ;?>
+				<?php echo JText::_('COM_SCICLUBPADOVA_SCICLUBPADOVAS_NAME') ;?>
 			</th>
 			<th width="5%">
 				<?php echo JText::_('COM_SCICLUBPADOVA_PUBLISHED'); ?>
@@ -38,8 +38,9 @@ defined('_JEXEC') or die('Restricted Access');
 		</tfoot>
 		<tbody>
 			<?php if (!empty($this->items)) : ?>
-				<?php foreach ($this->items as $i => $row) : ?>
- 
+				<?php foreach ($this->items as $i => $row) :
+          $link = JRoute::_('index.php?option=com_sciclubpadova&task=sciclubpadova.edit&id=' . $row->id);
+        ?>
 					<tr>
 						<td>
 							<?php echo $this->pagination->getRowOffset($i); ?>
@@ -48,6 +49,7 @@ defined('_JEXEC') or die('Restricted Access');
 							<?php echo JHtml::_('grid.id', $i, $row->id); ?>
 						</td>
 						<td>
+              <a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_SCICLUBPADOVA_EDIT_SCICLUBPADOVA'); ?>">
 							<?php echo $row->greeting; ?>
 						</td>
 						<td align="center">
@@ -61,4 +63,7 @@ defined('_JEXEC') or die('Restricted Access');
 			<?php endif; ?>
 		</tbody>
 	</table>
+  <input type="hidden" name="task" value=""/>
+  <input type="hidden" name="boxchecked" value="0"/>
+  <?php echo JHtml::_('form.token'); ?>
 </form>
