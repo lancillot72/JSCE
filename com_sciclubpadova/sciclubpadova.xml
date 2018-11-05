@@ -10,7 +10,7 @@
 	<copyright>Copyright Info</copyright>
 	<license>License Info</license>
 	<!--  The version string is recorded in the components table -->
-	<version>0.0.9</version>
+	<version>0.0.10</version>
 	<!-- The description is optional and defaults to the name -->
 	<description>COM_SCICLUBPADOVA_DESCRIPTION</description>
 
@@ -46,9 +46,14 @@
 		<language tag="en-GB">en-GB/en-GB.com_sciclubpadova.ini</language>
         </languages>
 
+		<media destination="com_sciclubpadova" folder="media">
+			<filename>index.html</filename>
+			<folder>images</folder>
+		</media>
+
 		<administration>
 		<!-- Administration Menu Section -->
-		<menu link='index.php?option=com_sciclubpadova'>COM_SCICLUBPADOVA_MENU</menu>
+		<menu link='index.php?option=com_sciclubpadova' img="../media/com_sciclubpadova/images/Tux-16x16.png">COM_SCICLUBPADOVA_MENU</menu>
 		<!-- Administration Main File Copy Section -->
 		<!-- Note the folder attribute: This attribute describes the folder
 			to copy FROM in the package to install therefore files copied
