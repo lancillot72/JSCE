@@ -16,6 +16,6 @@ defined('_JEXEC') or die('Restricted access');
  * @subpackage  com_sciclubpadova
  * @since       0.0.9
  */
-class SciCluPadovaControllerSciClubPadova extends JControllerForm
+class SciClubPadovaControllerSciClubPadova extends JControllerForm
 {
 }

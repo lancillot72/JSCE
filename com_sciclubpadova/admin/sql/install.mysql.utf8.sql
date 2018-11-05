@@ -11,5 +11,5 @@ CREATE TABLE `#__sciclubpadova` (
 	DEFAULT CHARSET =utf8;
 
 INSERT INTO `#__sciclubpadova` (`greeting`) VALUES
-('Hello World SciClubPadova!'),
-('Good bye World SciClubPadova!');
+('Sci Club 1'),
+('Sci Club 2');
