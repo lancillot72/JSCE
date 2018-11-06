@@ -36,6 +36,7 @@ class SciClubPadovaViewSciClubPadova extends JViewLegacy
 		// Get the Data
 		$this->form = $this->get('Form');
 		$this->item = $this->get('Item');
+		$this->script = $this->get('Script');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -99,6 +100,9 @@ class SciClubPadovaViewSciClubPadova extends JViewLegacy
 		$document = JFactory::getDocument();
 		$document->setTitle($isNew ? JText::_('COM_SCICLUBPADOVA_SCICLUBPADOVA_CREATING') :
                 JText::_('COM_SCICLUBPADOVA_SCICLUBPADOVA_EDITING'));
+		$document->addScript(JURI::root() . $this->script);
+		$document->addScript(JURI::root() . "/administrator/components/com_sciclubpadova"
+		                                  . "/views/sciclubpadova/submitbutton.js");
+		JText::script('COM_SCICLUBPADOVA_SCICLUBPADOVA_ERROR_UNACCEPTABLE');
 	}
-
 }
