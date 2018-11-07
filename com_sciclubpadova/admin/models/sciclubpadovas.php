@@ -50,8 +50,12 @@ class SciClubPadovaModelSciClubPadovas extends JModelList
 		$query = $db->getQuery(true);
 
 		// Create the base select statement.
-		$query->select('*')
-                ->from($db->quoteName('#__sciclubpadova'));
+		$query->select('a.id as id, a.greeting as greeting, a.published as published')
+			  ->from($db->quoteName('#__sciclubpadova', 'a'));
+
+		// Join over the categories.
+		$query->select($db->quoteName('c.title', 'category_title'))
+			->join('LEFT', $db->quoteName('#__categories', 'c') . ' ON c.id = a.catid');
 
 		// Filter: like / search
 		$search = $this->getState('filter.search');
@@ -67,11 +71,11 @@ class SciClubPadovaModelSciClubPadovas extends JModelList
 
 		if (is_numeric($published))
 		{
-			$query->where('published = ' . (int) $published);
+			$query->where('a.published = ' . (int) $published);
 		}
 		elseif ($published === '')
 		{
-			$query->where('(published IN (0, 1))');
+			$query->where('(a.published IN (0, 1))');
 		}
 
 		// Add the list ordering clause.

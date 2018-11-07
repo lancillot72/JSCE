@@ -16,6 +16,10 @@ $listOrder     = $this->escape($this->filter_order);
 $listDirn      = $this->escape($this->filter_order_Dir);
 ?>
 <form action="index.php?option=com_sciclubpadova&view=sciclubpadovas" method="post" id="adminForm" name="adminForm">
+	<div id="j-sidebar-container" class="span2">
+		<?php echo JHtmlSidebar::render(); ?>
+	</div>
+	<div id="j-main-container" class="span10">
 	<div class="row-fluid">
 		<div class="span6">
 			<?php echo JText::_('COM_SCICLUBPADOVA_SCICLUBPADOVAS_FILTER'); ?>
@@ -67,6 +71,9 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 						<td>
               <a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_SCICLUBPADOVA_EDIT_SCICLUBPADOVA'); ?>">
 							<?php echo $row->greeting; ?>
+							<div class="small">
+								<?php echo JText::_('JCATEGORY') . ': ' . $this->escape($row->category_title); ?>
+							</div>
 						</td>
 						<td align="center">
 							<?php echo JHtml::_('jgrid.published', $row->published, $i, 'sciclubpadovas.', true, 'cb'); ?>
@@ -84,4 +91,5 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 	<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>"/>
 	<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
   <?php echo JHtml::_('form.token'); ?>
+</div>
 </form>
