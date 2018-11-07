@@ -6,10 +6,10 @@
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
- 
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
- 
+
 /**
  * HTML View class for the HelloWorld Component
  *
@@ -27,16 +27,16 @@ class SciClubPadovaViewSciClubPadova extends JViewLegacy
 	function display($tpl = null)
 	{
 		// Assign data to the view
-		$this->msg = $this->get('Msg');
+    $this->item = $this->get('Item');
  
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
 			JLog::add(implode('<br />', $errors), JLog::WARNING, 'jerror');
- 
+
 			return false;
 		}
- 
+
 		// Display the view
 		parent::display($tpl);
 	}

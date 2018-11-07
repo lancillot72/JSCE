@@ -3,6 +3,10 @@
 				addrulepath="/administrator/components/com_sciclubpadova/models/rules"
 >
 	<fieldset>
+		<fieldset
+					name="details"
+					label="COM_SCICLUBPADOVA_SCICLUBPADOVA_DETAILS"
+		>
 		<field
 				name="id"
 				type="hidden"
@@ -31,4 +35,22 @@
 			<option value="0">JOPTION_SELECT_CATEGORY</option>
 				</field>
 	</fieldset>
+	<fields name="params">
+		<fieldset
+				name="params"
+				label="JGLOBAL_FIELDSET_DISPLAY_OPTIONS"
+		>
+			<field
+					name="show_category"
+					type="list"
+					label="COM_SCICLUBPADOVA_SCICLUBPADOVA_FIELD_SHOW_CATEGORY_LABEL"
+					description="COM_SCICLUBPADOVA_SCICLUBPADOVA_FIELD_SHOW_CATEGORY_DESC"
+					default=""
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+		</fieldset>
+	</fields>
 </form>

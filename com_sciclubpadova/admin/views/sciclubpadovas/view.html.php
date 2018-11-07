@@ -80,6 +80,7 @@ class SciClubPadovaViewSciClubPadovas extends JViewLegacy
 		JToolBarHelper::deleteList('', 'sciclubpadovas.delete');
 		JToolBarHelper::editList('sciclubpadova.edit');
 		JToolBarHelper::addNew('sciclubpadova.add');
+		JToolBarHelper::preferences('com_sciclubpadova');
 	}
 	/**
 	 * Method to set up the document properties
