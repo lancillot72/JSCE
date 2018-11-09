@@ -2,7 +2,6 @@
 <form
 				addrulepath="/administrator/components/com_sciclubpadova/models/rules"
 >
-	<fieldset>
 		<fieldset
 					name="details"
 					label="COM_SCICLUBPADOVA_SCICLUBPADOVA_DETAILS"
