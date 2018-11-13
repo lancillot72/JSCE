@@ -14,6 +14,12 @@ defined('_JEXEC') or die('Restricted access');
 $document = JFactory::getDocument();
 $document->addStyleDeclaration('.icon-sciclubpadova {background-image: url(../media/com_sciclubpadova/images/Tux-16x16.png);}');
 
+// Access check: is this user allowed to access the backend of this component?
+if (!JFactory::getUser()->authorise('core.manage', 'com_sciclubpadova'))
+{
+	throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'));
+}
+
 // Require helper file
 JLoader::register('SciClubPadovaHelper', JPATH_COMPONENT . '/helpers/sciclubpadova.php');
 

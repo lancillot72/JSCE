@@ -39,12 +39,13 @@ class SciClubPadovaViewSciClubPadovas extends JViewLegacy
 		$this->filterForm    	= $this->get('FilterForm');
 		$this->activeFilters 	= $this->get('ActiveFilters');
 
+		// What Access Permissions does this user have? What can (s)he do?
+		$this->canDo = JHelperContent::getActions('com_sciclubpadova');
+
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			JError::raiseError(500, implode('<br />', $errors));
-
-			return false;
+			throw new Exception(implode("\n", $errors), 500);
 		}
 
 		// Set the submenu
@@ -77,10 +78,24 @@ class SciClubPadovaViewSciClubPadovas extends JViewLegacy
 		}
 
 		JToolBarHelper::title($title, 'sciclubpadova');
-		JToolBarHelper::deleteList('', 'sciclubpadovas.delete');
-		JToolBarHelper::editList('sciclubpadova.edit');
-		JToolBarHelper::addNew('sciclubpadova.add');
-		JToolBarHelper::preferences('com_sciclubpadova');
+
+		if ($this->canDo->get('core.create'))
+		{
+			JToolBarHelper::addNew('sciclubpadova.add', 'JTOOLBAR_NEW');
+		}
+		if ($this->canDo->get('core.edit'))
+		{
+			JToolBarHelper::editList('sciclubpadova.edit', 'JTOOLBAR_EDIT');
+		}
+		if ($this->canDo->get('core.delete'))
+		{
+			JToolBarHelper::deleteList('', 'sciclubpadovas.delete', 'JTOOLBAR_DELETE');
+		}
+		if ($this->canDo->get('core.admin'))
+		{
+			JToolBarHelper::divider();
+			JToolBarHelper::preferences('com_sciclubpadova');
+    }
 	}
 	/**
 	 * Method to set up the document properties

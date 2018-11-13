@@ -17,12 +17,10 @@ defined('_JEXEC') or die('Restricted access');
  */
 class SciClubPadovaViewSciClubPadova extends JViewLegacy
 {
-	/**
-	 * View form
-	 *
-	 * @var         form
-	 */
-	protected $form = null;
+	protected $form;
+	protected $item;
+	protected $script;
+	protected $canDo;
 
 	/**
 	 * Display the Sci Club Padova view
@@ -38,14 +36,14 @@ class SciClubPadovaViewSciClubPadova extends JViewLegacy
 		$this->item = $this->get('Item');
 		$this->script = $this->get('Script');
 
+		// What Access Permissions does this user have? What can (s)he do?
+		$this->canDo = JHelperContent::getActions('com_sciclubpadova', 'sciclubpadova', $this->item->id);
+
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			JError::raiseError(500, implode('<br />', $errors));
-
-			return false;
+			throw new Exception(implode("\n", $errors), 500);
 		}
-
 
 		// Set the toolbar
 		$this->addToolBar();
@@ -73,21 +71,44 @@ class SciClubPadovaViewSciClubPadova extends JViewLegacy
 
 		$isNew = ($this->item->id == 0);
 
+		JToolBarHelper::title($isNew ? JText::_('COM_SCICLUBPADOVA_MANAGER_SCICLUBPADOVA_NEW')
+		                             : JText::_('COM_SCICLUBPADOVA_MANAGER_SCICLUBPADOVA_EDIT'), 'sciclubpadova');
+		// Build the actions for new and existing records.
 		if ($isNew)
 		{
-			$title = JText::_('COM_SCICLUBPADOVA_MANAGER_SCICLUBPADOVA_NEW');
+			// For new records, check the create permission.
+			if ($this->canDo->get('core.create'))
+			{
+				JToolBarHelper::apply('sciclubpadova.apply', 'JTOOLBAR_APPLY');
+				JToolBarHelper::save('sciclubpadova.save', 'JTOOLBAR_SAVE');
+				JToolBarHelper::custom('sciclubpadova.save2new', 'save-new.png', 'save-new_f2.png',
+				                       'JTOOLBAR_SAVE_AND_NEW', false);
+			}
+			JToolBarHelper::cancel('sciclubpadova.cancel', 'JTOOLBAR_CANCEL');
 		}
 		else
 		{
-			$title = JText::_('COM_SCICLUBPADOVA_MANAGER_SCICLUBPADOVA_EDIT');
-		}
+			if ($this->canDo->get('core.edit'))
+			{
+				// We can save the new record
+				JToolBarHelper::apply('sciclubpadova.apply', 'JTOOLBAR_APPLY');
+				JToolBarHelper::save('sciclubpadova.save', 'JTOOLBAR_SAVE');
 
-		JToolbarHelper::title($title, 'sciclubpadova');
-		JToolbarHelper::save('sciclubpadova.save');
-		JToolbarHelper::cancel(
-			'sciclubpadova.cancel',
-			$isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
-		);
+				// We can save this record, but check the create permission to see
+				// if we can return to make a new one.
+				if ($this->canDo->get('core.create'))
+				{
+					JToolBarHelper::custom('sciclubpadova.save2new', 'save-new.png', 'save-new_f2.png',
+					                       'JTOOLBAR_SAVE_AND_NEW', false);
+				}
+			}
+			if ($this->canDo->get('core.create'))
+			{
+				JToolBarHelper::custom('sciclubpadova.save2copy', 'save-copy.png', 'save-copy_f2.png',
+				                       'JTOOLBAR_SAVE_AS_COPY', false);
+			}
+			JToolBarHelper::cancel('sciclubpadova.cancel', 'JTOOLBAR_CLOSE');
+		}
 	}
 	/**
 	 * Method to set up the document properties

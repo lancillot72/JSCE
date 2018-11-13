@@ -2,7 +2,6 @@
 <form
 				addrulepath="/administrator/components/com_sciclubpadova/models/rules"
 >
-	<fieldset>
 		<fieldset
 					name="details"
 					label="COM_SCICLUBPADOVA_SCICLUBPADOVA_DETAILS"
@@ -33,7 +32,7 @@
 				required="true"
 		>
 			<option value="0">JOPTION_SELECT_CATEGORY</option>
-				</field>
+		</field>
 	</fieldset>
 	<fields name="params">
 		<fieldset
@@ -53,4 +52,24 @@
 			</field>
 		</fieldset>
 	</fields>
+	<fieldset
+			name="accesscontrol"
+			label="COM_SCICLUBPADOVA_FIELDSET_RULES"
+	>
+    	<field
+				name="asset_id"
+				type="hidden"
+				filter="unset"
+				/>
+    	<field
+				name="rules"
+				type="rules"
+				label="COM_SCICLUBPADOVA_FIELD_RULES_LABEL"
+				filter="rules"
+				validate="rules"
+				class="inputbox"
+				component="com_sciclubpadova"
+				section="message"
+				/>
+    </fieldset>
 </form>
