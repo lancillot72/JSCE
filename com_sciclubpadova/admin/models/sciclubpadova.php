@@ -102,7 +102,7 @@ class SciClubPadovaModelSciClubPadova extends JModelAdmin
 	{
 		if( !empty( $record->id ) )
 		{
-			return JFactory::getUser()->authorise( "core.delete", "com_sciclubpadova.sciclubpadova." . $record->id );
+			return JFactory::getUser()->authorise( "core.delete", "com_sciclubpadova.message." . $record->id );
 		}
 	}
 }

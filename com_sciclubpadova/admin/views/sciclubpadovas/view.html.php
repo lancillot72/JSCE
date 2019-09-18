@@ -40,12 +40,14 @@ class SciClubPadovaViewSciClubPadovas extends JViewLegacy
 		$this->activeFilters 	= $this->get('ActiveFilters');
 
 		// What Access Permissions does this user have? What can (s)he do?
-		$this->canDo = JHelperContent::getActions('com_sciclubpadova');
+		$this->canDo = SciClubPadovaHelper::getActions();
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			throw new Exception(implode("\n", $errors), 500);
+			JError::raiseError(500, implode('<br />', $errors));
+
+			return false;
 		}
 
 		// Set the submenu

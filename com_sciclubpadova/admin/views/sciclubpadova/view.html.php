@@ -37,12 +37,14 @@ class SciClubPadovaViewSciClubPadova extends JViewLegacy
 		$this->script = $this->get('Script');
 
 		// What Access Permissions does this user have? What can (s)he do?
-		$this->canDo = JHelperContent::getActions('com_sciclubpadova', 'sciclubpadova', $this->item->id);
+		$this->canDo = SciClubPadovaHelper::getActions($this->item->id);
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			throw new Exception(implode("\n", $errors), 500);
+			JError::raiseError(500, implode('<br />', $errors));
+
+			return false;
 		}
 
 		// Set the toolbar
@@ -117,10 +119,10 @@ class SciClubPadovaViewSciClubPadova extends JViewLegacy
 	 */
 	protected function setDocument()
 	{
-		$isNew = ($this->item->id < 1);
+		$isNew = ($this->item->id == 0);
 		$document = JFactory::getDocument();
-		$document->setTitle($isNew ? JText::_('COM_SCICLUBPADOVA_SCICLUBPADOVA_CREATING') :
-                JText::_('COM_SCICLUBPADOVA_SCICLUBPADOVA_EDITING'));
+		$document->setTitle($isNew ? JText::_('COM_SCICLUBPADOVA_SCICLUBPADOVA_CREATING')
+                               : JText::_('COM_SCICLUBPADOVA_SCICLUBPADOVA_EDITING'));
 		$document->addScript(JURI::root() . $this->script);
 		$document->addScript(JURI::root() . "/administrator/components/com_sciclubpadova"
 		                                  . "/views/sciclubpadova/submitbutton.js");

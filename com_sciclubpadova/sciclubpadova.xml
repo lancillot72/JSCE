@@ -12,12 +12,12 @@
 	<!--  The version string is recorded in the components table -->
 	<version>0.0.15</version>
 	<!-- The description is optional and defaults to the name -->
-	<!-- Runs on install/uninstall/update; New in 2.5 -->
-	<scriptfile>script.php</scriptfile>
-
 	<description>COM_SCICLUBPADOVA_DESCRIPTION</description>
 
- 	<install> <!-- Runs on install -->
+	<!-- Runs on install/uninstall/update; New in 2.5 -->
+ 	<scriptfile>script.php</scriptfile>
+
+	<install> <!-- Runs on install -->
 		<sql>
 			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
 		</sql>
@@ -45,9 +45,9 @@
 		<folder>models</folder>
 	</files>
 
-        <languages folder="site/language">
+    <languages folder="site/language">
 		<language tag="en-GB">en-GB/en-GB.com_sciclubpadova.ini</language>
-        </languages>
+    </languages>
 
 		<media destination="com_sciclubpadova" folder="media">
 			<filename>index.html</filename>

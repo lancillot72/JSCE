@@ -48,7 +48,8 @@ class JFormFieldSciClubPadova extends JFormFieldList
 		{
 			foreach ($messages as $message)
 			{
-				$options[] = JHtml::_('select.option', $message->id, $message->greeting);
+				$options[] = JHtml::_('select.option', $message->id, $message->greeting .
+												($message->catid ? ' (' . $message->category . ')' : ''));
 			}
 		}
 

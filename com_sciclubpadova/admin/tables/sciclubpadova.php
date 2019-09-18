@@ -52,6 +52,31 @@ class SciClubPadovaTableSciClubPadova extends JTable
 
 		return parent::bind($array, $ignore);
 	}
+
+		/**
+		 * Overloaded load function
+		 *
+		 * @param       int $pk primary key
+		 * @param       boolean $reset reset data
+		 * @return      boolean
+		 * @see JTable:load
+		 */
+		public function load($pk = null, $reset = true)
+		{
+			if (parent::load($pk, $reset))
+			{
+				// Convert the params field to a registry.
+				$params = new JRegistry;
+				$params->loadString($this->params, 'JSON');
+
+				$this->params = $params;
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
   /**
 	 * Method to compute the default name of the asset.
 	 * The default name is in the form `table_name.id`
@@ -63,7 +88,7 @@ class SciClubPadovaTableSciClubPadova extends JTable
 	protected function _getAssetName()
 	{
 		$k = $this->_tbl_key;
-		return 'com_sciclubpadova.sciclubpadova.'.(int) $this->$k;
+		return 'com_sciclubpadova.message.'.(int) $this->$k;
 	}
 	/**
 	 * Method to return the title to use for the asset table.

@@ -19,23 +19,20 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since   1.6
  */
-abstract class SciClubPadovaHelper extends JHelperContent
+abstract class SciClubPadovaHelper
 {
 	/**
 	 * Configure the Linkbar.
-	 *
-	 * @return Bool
 	 */
-
 	public static function addSubmenu($submenu)
 	{
-		JHtmlSidebar::addEntry(
+		JSubMenuHelper::addEntry(
 			JText::_('COM_SCICLUBPADOVA_SUBMENU_MESSAGES'),
 			'index.php?option=com_sciclubpadova',
-			$submenu == 'sciclubpadovas'
+			$submenu == 'messages'
 		);
 
-		JHtmlSidebar::addEntry(
+		JSubMenuHelper::addEntry(
 			JText::_('COM_SCICLUBPADOVA_SUBMENU_CATEGORIES'),
 			'index.php?option=com_categories&view=categories&extension=com_sciclubpadova',
 			$submenu == 'categories'
@@ -49,5 +46,28 @@ abstract class SciClubPadovaHelper extends JHelperContent
 		{
 			$document->setTitle(JText::_('COM_SCICLUBPADOVA_ADMINISTRATION_CATEGORIES'));
 		}
+	}
+
+	/**
+	 * Get the actions
+	 */
+	public static function getActions($messageId = 0)
+	{
+		$result	= new JObject;
+
+		if (empty($messageId)) {
+			$assetName = 'com_sciclubpadova';
+		}
+		else {
+			$assetName = 'com_sciclubpadova.message.'.(int) $messageId;
+		}
+
+		$actions = JAccess::getActions('com_sciclubpadova', 'component');
+
+		foreach ($actions as $action) {
+			$result->set($action->name, JFactory::getUser()->authorise($action->name, $assetName));
+		}
+
+		return $result;
 	}
 }
